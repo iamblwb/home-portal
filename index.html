@@ -16,7 +16,6 @@
     --border: rgba(255,255,255,0.08);
     --text: #e8eaf0;
     --muted: #6b7280;
-    --accent: #6366f1;
   }
 
   body {
@@ -27,7 +26,6 @@
     overflow-x: hidden;
   }
 
-  /* ── ambient background ── */
   body::before {
     content: '';
     position: fixed;
@@ -40,7 +38,6 @@
     z-index: 0;
   }
 
-  /* ── star dots ── */
   body::after {
     content: '';
     position: fixed;
@@ -67,10 +64,7 @@
   }
 
   /* ── header ── */
-  header {
-    text-align: center;
-    padding: 72px 0 56px;
-  }
+  header { text-align: center; padding: 72px 0 56px; }
 
   .logo-badge {
     display: inline-flex;
@@ -114,13 +108,11 @@
   header p {
     color: var(--muted);
     font-size: 1.05rem;
-    font-weight: 400;
     max-width: 480px;
     margin: 0 auto;
     line-height: 1.6;
   }
 
-  /* ── stat strip ── */
   .stats {
     display: flex;
     justify-content: center;
@@ -129,24 +121,9 @@
     flex-wrap: wrap;
   }
 
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #e8eaf0;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 4px;
-  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 1.8rem; font-weight: 700; color: #e8eaf0; letter-spacing: -0.02em; }
+  .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
 
   /* ── grid ── */
   .grid {
@@ -166,7 +143,8 @@
     -webkit-backdrop-filter: blur(12px);
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     cursor: pointer;
   }
@@ -198,9 +176,7 @@
     box-shadow: 0 24px 60px rgba(0,0,0,0.4), var(--card-shadow);
   }
 
-  .card:hover::after {
-    opacity: 1;
-  }
+  .card:hover::after { opacity: 1; }
 
   /* ── card header ── */
   .card-head {
@@ -230,23 +206,9 @@
     text-transform: uppercase;
   }
 
-  .badge-live {
-    background: rgba(20,184,166,0.15);
-    color: #2dd4bf;
-    border: 1px solid rgba(20,184,166,0.25);
-  }
-
-  .badge-beta {
-    background: rgba(251,191,36,0.12);
-    color: #fbbf24;
-    border: 1px solid rgba(251,191,36,0.2);
-  }
-
-  .badge-new {
-    background: rgba(99,102,241,0.15);
-    color: #a5b4fc;
-    border: 1px solid rgba(99,102,241,0.25);
-  }
+  .badge-live  { background: rgba(20,184,166,0.15); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.25); }
+  .badge-beta  { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+  .badge-new   { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
 
   /* ── card body ── */
   .card-title {
@@ -261,7 +223,71 @@
     font-size: 0.875rem;
     color: var(--muted);
     line-height: 1.65;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+
+  /* ── tags ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.07);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── meta row (CI/CD & Token) ── */
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+    min-height: 0;
+  }
+
+  .meta-cicd {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: rgba(34,197,94,0.1);
+    color: #86efac;
+    border: 1px solid rgba(34,197,94,0.2);
+    letter-spacing: 0.03em;
+  }
+
+  .meta-cicd::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #4ade80;
+    flex-shrink: 0;
+  }
+
+  .meta-token {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: rgba(251,191,36,0.1);
+    color: #fde68a;
+    border: 1px solid rgba(251,191,36,0.2);
+    letter-spacing: 0.03em;
   }
 
   /* ── card footer ── */
@@ -269,6 +295,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: auto;
   }
 
   .card-url {
@@ -299,25 +326,7 @@
     transform: rotate(45deg);
   }
 
-  /* ── tags ── */
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 16px;
-  }
-
-  .tag {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.35);
-    border: 1px solid rgba(255,255,255,0.07);
-    letter-spacing: 0.02em;
-  }
-
-  /* ── section divider ── */
+  /* ── section label ── */
   .section-label {
     font-size: 11px;
     text-transform: uppercase;
@@ -347,92 +356,25 @@
     line-height: 1.8;
   }
 
-  footer a {
-    color: rgba(165,180,252,0.6);
-    text-decoration: none;
-  }
-
+  footer a { color: rgba(165,180,252,0.6); text-decoration: none; }
   footer a:hover { color: #a5b4fc; }
 
   /* ── card color themes ── */
-  .c-indigo {
-    --card-gradient: linear-gradient(90deg, #6366f1, #818cf8);
-    --card-glow: radial-gradient(ellipse at top left, rgba(99,102,241,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(99,102,241,0.15);
-    --card-icon-bg: rgba(99,102,241,0.18);
-  }
-  .c-purple {
-    --card-gradient: linear-gradient(90deg, #a855f7, #c084fc);
-    --card-glow: radial-gradient(ellipse at top left, rgba(168,85,247,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(168,85,247,0.12);
-    --card-icon-bg: rgba(168,85,247,0.18);
-  }
-  .c-cyan {
-    --card-gradient: linear-gradient(90deg, #06b6d4, #22d3ee);
-    --card-glow: radial-gradient(ellipse at top left, rgba(6,182,212,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(6,182,212,0.12);
-    --card-icon-bg: rgba(6,182,212,0.18);
-  }
-  .c-teal {
-    --card-gradient: linear-gradient(90deg, #14b8a6, #2dd4bf);
-    --card-glow: radial-gradient(ellipse at top left, rgba(20,184,166,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(20,184,166,0.12);
-    --card-icon-bg: rgba(20,184,166,0.18);
-  }
-  .c-amber {
-    --card-gradient: linear-gradient(90deg, #f59e0b, #fbbf24);
-    --card-glow: radial-gradient(ellipse at top left, rgba(245,158,11,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(245,158,11,0.12);
-    --card-icon-bg: rgba(245,158,11,0.18);
-  }
-  .c-rose {
-    --card-gradient: linear-gradient(90deg, #f43f5e, #fb7185);
-    --card-glow: radial-gradient(ellipse at top left, rgba(244,63,94,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(244,63,94,0.12);
-    --card-icon-bg: rgba(244,63,94,0.18);
-  }
-  .c-green {
-    --card-gradient: linear-gradient(90deg, #22c55e, #4ade80);
-    --card-glow: radial-gradient(ellipse at top left, rgba(34,197,94,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(34,197,94,0.12);
-    --card-icon-bg: rgba(34,197,94,0.18);
-  }
-  .c-blue {
-    --card-gradient: linear-gradient(90deg, #3b82f6, #60a5fa);
-    --card-glow: radial-gradient(ellipse at top left, rgba(59,130,246,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(59,130,246,0.12);
-    --card-icon-bg: rgba(59,130,246,0.18);
-  }
-  .c-orange {
-    --card-gradient: linear-gradient(90deg, #ea580c, #fb923c);
-    --card-glow: radial-gradient(ellipse at top left, rgba(234,88,12,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(234,88,12,0.12);
-    --card-icon-bg: rgba(234,88,12,0.18);
-  }
-  .c-pink {
-    --card-gradient: linear-gradient(90deg, #ec4899, #f472b6);
-    --card-glow: radial-gradient(ellipse at top left, rgba(236,72,153,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(236,72,153,0.12);
-    --card-icon-bg: rgba(236,72,153,0.18);
-  }
-  .c-lime {
-    --card-gradient: linear-gradient(90deg, #84cc16, #a3e635);
-    --card-glow: radial-gradient(ellipse at top left, rgba(132,204,22,0.08) 0%, transparent 60%);
-    --card-shadow: 0 0 40px rgba(132,204,22,0.12);
-    --card-icon-bg: rgba(132,204,22,0.18);
-  }
+  .c-indigo { --card-gradient: linear-gradient(90deg,#6366f1,#818cf8); --card-glow: radial-gradient(ellipse at top left,rgba(99,102,241,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(99,102,241,0.15); --card-icon-bg: rgba(99,102,241,0.18); }
+  .c-purple  { --card-gradient: linear-gradient(90deg,#a855f7,#c084fc); --card-glow: radial-gradient(ellipse at top left,rgba(168,85,247,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(168,85,247,0.12); --card-icon-bg: rgba(168,85,247,0.18); }
+  .c-cyan    { --card-gradient: linear-gradient(90deg,#06b6d4,#22d3ee); --card-glow: radial-gradient(ellipse at top left,rgba(6,182,212,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(6,182,212,0.12); --card-icon-bg: rgba(6,182,212,0.18); }
+  .c-teal    { --card-gradient: linear-gradient(90deg,#14b8a6,#2dd4bf); --card-glow: radial-gradient(ellipse at top left,rgba(20,184,166,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(20,184,166,0.12); --card-icon-bg: rgba(20,184,166,0.18); }
+  .c-amber   { --card-gradient: linear-gradient(90deg,#f59e0b,#fbbf24); --card-glow: radial-gradient(ellipse at top left,rgba(245,158,11,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(245,158,11,0.12); --card-icon-bg: rgba(245,158,11,0.18); }
+  .c-rose    { --card-gradient: linear-gradient(90deg,#f43f5e,#fb7185); --card-glow: radial-gradient(ellipse at top left,rgba(244,63,94,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(244,63,94,0.12); --card-icon-bg: rgba(244,63,94,0.18); }
+  .c-green   { --card-gradient: linear-gradient(90deg,#22c55e,#4ade80); --card-glow: radial-gradient(ellipse at top left,rgba(34,197,94,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(34,197,94,0.12); --card-icon-bg: rgba(34,197,94,0.18); }
+  .c-blue    { --card-gradient: linear-gradient(90deg,#3b82f6,#60a5fa); --card-glow: radial-gradient(ellipse at top left,rgba(59,130,246,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(59,130,246,0.12); --card-icon-bg: rgba(59,130,246,0.18); }
+  .c-orange  { --card-gradient: linear-gradient(90deg,#ea580c,#fb923c); --card-glow: radial-gradient(ellipse at top left,rgba(234,88,12,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(234,88,12,0.12); --card-icon-bg: rgba(234,88,12,0.18); }
+  .c-pink    { --card-gradient: linear-gradient(90deg,#ec4899,#f472b6); --card-glow: radial-gradient(ellipse at top left,rgba(236,72,153,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(236,72,153,0.12); --card-icon-bg: rgba(236,72,153,0.18); }
+  .c-lime    { --card-gradient: linear-gradient(90deg,#84cc16,#a3e635); --card-glow: radial-gradient(ellipse at top left,rgba(132,204,22,0.08) 0%,transparent 60%); --card-shadow: 0 0 40px rgba(132,204,22,0.12); --card-icon-bg: rgba(132,204,22,0.18); }
 
   /* ── enter animation ── */
-  .card {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.5s ease forwards;
-  }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  .card { opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   .card:nth-child(1)  { animation-delay: 0.05s; }
   .card:nth-child(2)  { animation-delay: 0.10s; }
   .card:nth-child(3)  { animation-delay: 0.15s; }
@@ -455,7 +397,6 @@
 <body>
 <div class="wrap">
 
-  <!-- ── Header ── -->
   <header>
     <div class="logo-badge">
       <span class="logo-dot"></span>
@@ -463,24 +404,14 @@
     </div>
     <h1>把想法變成<br>真實運行的產品</h1>
     <p>從情報儀表板到 AI 教學，這裡是所有正在運行的專案。</p>
-
     <div class="stats">
-      <div class="stat">
-        <div class="stat-num">11</div>
-        <div class="stat-label">運行中專案</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">7</div>
-        <div class="stat-label">CI/CD 自動部署</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">24/7</div>
-        <div class="stat-label">全自動運行</div>
-      </div>
+      <div class="stat"><div class="stat-num">11</div><div class="stat-label">運行中專案</div></div>
+      <div class="stat"><div class="stat-num">7</div><div class="stat-label">CI/CD 自動部署</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">全自動運行</div></div>
     </div>
   </header>
 
-  <!-- ── Section: 情報 & 資料 ── -->
+  <!-- ── 情報 & 資料 ── -->
   <div class="section-label">情報 · 資料</div>
   <div class="grid">
 
@@ -496,6 +427,9 @@
         <span class="tag">Gemini AI</span>
       </div>
       <div class="card-desc">Polymarket 鯨魚追蹤 · 3D 互動地球儀 · AI 即時新聞摘要 · Binance 加密貨幣行情</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">intel.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -514,6 +448,9 @@
         <span class="tag">每日更新</span>
       </div>
       <div class="card-desc">自動偵測 YouTube 高互動影片 · 每日爆款報告 · 趨勢內容追蹤</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">radar.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -532,6 +469,9 @@
         <span class="tag">即時</span>
       </div>
       <div class="card-desc">WebSocket 即時車輛位置追蹤 · 設備側邊欄 · 動態路徑顯示</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">track.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -540,7 +480,7 @@
 
   </div>
 
-  <!-- ── Section: AI 工具 ── -->
+  <!-- ── AI 工具 ── -->
   <div class="section-label">AI 工具</div>
   <div class="grid">
 
@@ -556,6 +496,9 @@
         <span class="tag">個人化</span>
       </div>
       <div class="card-desc">Gemini 驅動的 AI 數學家教 · 動態練習題生成 · 即時解題反饋 · 中文介面</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">learn.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -574,6 +517,9 @@
         <span class="tag">技術分析</span>
       </div>
       <div class="card-desc">多人即時技術指標交易遊戲 · EMA / MACD 指標 · 競速排行榜</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">game.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -592,6 +538,9 @@
         <span class="tag">輪播</span>
       </div>
       <div class="card-desc">AI 自動生成每日 IG 貼文 · 新聞輪播預覽 · 一鍵複製貼文文案</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">ig.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -600,7 +549,7 @@
 
   </div>
 
-  <!-- ── Section: 商業 & 行銷 ── -->
+  <!-- ── 商業 & 行銷 ── -->
   <div class="section-label">商業 · 行銷</div>
   <div class="grid">
 
@@ -616,6 +565,9 @@
         <span class="tag">報名</span>
       </div>
       <div class="card-desc">Vibe Coding 教學課程登陸頁 · 報名系統 · WhatsApp 即時連線</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">course.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -634,6 +586,10 @@
         <span class="tag">30+ 想法</span>
       </div>
       <div class="card-desc">Notion 同步的想法管理看板 · 自動分類 · Telegram 即時記錄</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+        <span class="meta-token">🔒 需要 Token</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">ideas.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -652,6 +608,9 @@
         <span class="tag">BSC 支付</span>
       </div>
       <div class="card-desc">外匯 EA 自動交易策略平台 · License 管理系統 · 加密貨幣收款</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">ea.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -660,7 +619,7 @@
 
   </div>
 
-  <!-- ── Section: 基礎設施 ── -->
+  <!-- ── 基礎設施 ── -->
   <div class="section-label">基礎設施</div>
   <div class="grid">
 
@@ -676,6 +635,9 @@
         <span class="tag">CI/CD</span>
       </div>
       <div class="card-desc">核心 RESTful API 後端 · FastAPI + GitHub Actions 自動部署 · 支撐所有前端服務</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">api.iamblwb.com</span>
         <span class="card-arrow">↗</span>
@@ -694,20 +656,40 @@
         <span class="tag">Notion 同步</span>
       </div>
       <div class="card-desc">兩隻黃金拉布拉多的日常記錄 · 大白（老大，憨厚）· 小白（老二，搗蛋）</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
       <div class="card-footer">
         <span class="card-url">pets.iamblwb.com</span>
         <span class="card-arrow">↗</span>
       </div>
     </a>
 
+    <a href="https://home.iamblwb.com" target="_blank" class="card c-indigo">
+      <div class="card-head">
+        <div class="icon-wrap">🏠</div>
+        <span class="badge badge-new">New</span>
+      </div>
+      <div class="card-title">專案入口頁（本頁）</div>
+      <div class="tags">
+        <span class="tag">Portal</span>
+        <span class="tag">靜態</span>
+      </div>
+      <div class="card-desc">所有 iamblwb.com 專案的導覽入口 · 玻璃質感設計 · 自動更新</div>
+      <div class="meta-row">
+        <span class="meta-cicd">CI/CD</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">home.iamblwb.com</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+
   </div>
 
-  <!-- ── Footer ── -->
   <footer>
     <p>Built with AI · Powered by <a href="https://api.iamblwb.com">iamblwb API</a> · 全自動部署</p>
-    <p style="margin-top:8px; color: rgba(107,114,128,0.5);">
-      VPS · Ubuntu 24.04 · Nginx · Let's Encrypt · GitHub Actions
-    </p>
+    <p style="margin-top:8px; color: rgba(107,114,128,0.5);">VPS · Ubuntu 24.04 · Nginx · Let's Encrypt · GitHub Actions</p>
   </footer>
 
 </div>
