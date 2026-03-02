@@ -1,0 +1,26 @@
+name: Deploy home.iamblwb.com
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            mkdir -p /var/www/home.iamblwb.com
+            cd /tmp
+            rm -rf home-portal-deploy
+            git clone https://github.com/iamblwb/home-portal.git home-portal-deploy
+            cp /tmp/home-portal-deploy/index.html /var/www/home.iamblwb.com/index.html
+            rm -rf /tmp/home-portal-deploy
+            echo "✅ home.iamblwb.com deployed"
